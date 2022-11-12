@@ -1,0 +1,14 @@
+[debug] [2022-10-18T00:34:51.114Z] ----------------------------------------------------------------------
+[debug] [2022-10-18T00:34:51.117Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\javie\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2022-10-18T00:34:51.117Z] CLI Version:   11.14.4
+[debug] [2022-10-18T00:34:51.118Z] Platform:      win32
+[debug] [2022-10-18T00:34:51.118Z] Node Version:  v16.15.1
+[debug] [2022-10-18T00:34:51.119Z] Time:          Mon Oct 17 2022 20:34:51 GMT-0400 (Eastern Daylight Saving Time)
+[debug] [2022-10-18T00:34:51.119Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-10-18T00:34:51.189Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-10-18T00:34:51.190Z] > authorizing via signed-in user (javier.huang168@gmail.com)
+[debug] [2022-10-18T00:34:51.190Z] [iam] checking project tesserask for permissions ["cloudconfig.configs.get","cloudconfig.configs.update","cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2022-10-18T00:34:51.192Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/tesserask:testIamPermissions [none]
+[debug] [2022-10-18T00:34:51.192Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/tesserask:testIamPermissions x-goog-quota-user=projects/tesserask
+[debug] [2022-10-18T00:34:51.192Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/tesserask:testIamPermissions {"permissions":["cloudconfig.configs.get","cloudconfig.configs.update","cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
