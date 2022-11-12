@@ -1,0 +1,156 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$everyquest-primary: mat.define-palette(mat.$purple-palette);
+$everyquest-accent: mat.define-palette(mat.$indigo-palette);
+
+// The warn palette is optional (defaults to red).
+$everyquest-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$light-theme: mat.define-light-theme((
+  color: (
+    primary: $everyquest-primary,
+    accent: $everyquest-accent,
+    warn: $everyquest-warn,
+  )
+));
+
+$light-theme: mat.define-light-theme((
+  color: (
+    primary: $everyquest-primary,
+    accent: $everyquest-accent,
+    warn: $everyquest-warn,
+  )
+));
+
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $everyquest-primary,
+    accent: $everyquest-accent,
+    warn: $everyquest-warn,
+  )
+));
+
+@import '@angular/material/theming';
+
+@import './app/components/pages/stream/stream-theme.component';
+@import './app/components/popups/create-edit-item/create-edit-item-theme.component';
+@import './app/components/popups/join-unshared/join-unshared-theme.component';
+@import './app/components/widgets/attachment/attachment-theme.component';
+@import './app/components/widgets/item/item-theme.component';
+@import './app/components/widgets/search/search-theme.component';
+@import './app/components/widgets/space-card/space-card-theme.component';
+
+@mixin apply-colors($theme) {
+  $is-dark-theme: map-get($theme, is-dark);
+
+  $foreground-palette: map-get($theme, foreground);
+  $background-palette: map-get($theme, background);
+
+  $primary-palette: map-get($theme, primary);
+  $primary-color: mat-color($primary-palette, default);
+  $primary-light: mat-color($primary-palette, lighter);
+  $primary-dark: mat-color($primary-palette, darker);
+
+  $accent-palette: map-get($theme, accent);
+  $accent-color: mat-color($accent-palette, default);
+  $accent-light: mat-color($accent-palette, lighter);
+  $accent-dark: mat-color($accent-palette, darker);
+
+  $warn-palette: map-get($theme, warn);
+  $warn-color: mat-color($warn-palette, default);
+  $warn-light: mat-color($warn-palette, lighter);
+  $warn-dark: mat-color($warn-palette, darker);
+
+  $base: mat-color($foreground-palette, base);
+  $divider: mat-color($foreground-palette, divider);
+  $dividers: mat-color($foreground-palette, dividers);
+  $disabled: mat-color($foreground-palette, disabled);
+  $disabled-button: mat-color($foreground-palette, disabled-button);
+  $disabled-text: mat-color($foreground-palette, disabled-text);
+  $hint-text: mat-color($foreground-palette, hint-text);
+  $secondary-text: mat-color($foreground-palette, secondary-text);
+  $icon: mat-color($foreground-palette, icon);
+  $icons: mat-color($foreground-palette, icons);
+  $text: mat-color($foreground-palette, text);
+  $slider-off: mat-color($foreground-palette, slider-off);
+  $slider-off-active: mat-color($foreground-palette, slider-off-active);
+
+  $status-bar: mat-color($background-palette, status-bar);
+  $app-bar: mat-color($background-palette, app-bar);
+  $background: mat-color($background-palette, background);
+  $hover: mat-color($background-palette, hover);
+  $card: mat-color($background-palette, card);
+  $dialog: mat-color($background-palette, dialog);
+  $disabled-button: mat-color($background-palette, disabled-button);
+  $raised-button: mat-color($background-palette, raised-button);
+  $focused-button: mat-color($background-palette, focused-button);
+  $selected-button: mat-color($background-palette, selected-button);
+  $selected-disabled-button: mat-color($background-palette, selected-disabled-button);
+  $disabled-button-toggle: mat-color($background-palette, disabled-button-toggle);
+
+  @include stream-component-theme($card);
+  @include create-edit-item-component-theme($divider);
+  @include join-unshared-component-theme($primary-color, $accent-color);
+  @include attachment-component-theme($divider);
+  @include item-component-theme($card, $divider, $background, $primary-color, $accent-color);
+  @include search-component-theme($hover, $text);
+  @include space-card-component-theme($background, $divider);  
+}
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($light-theme);
+@include apply-colors($light-theme);
+
+.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+  @include apply-colors($dark-theme);
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+
+  overflow: overlay;
+}
+
+* {
+  font-family: "Lato", sans-serif; 
+  word-break: break-all;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+
+  background-color: #00000040;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #00000080
+}
