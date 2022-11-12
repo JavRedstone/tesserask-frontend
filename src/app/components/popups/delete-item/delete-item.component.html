@@ -1,0 +1,8 @@
+<mat-dialog-content>
+    <p class = "delete-item-title">Confirm Delete</p>
+    Are you sure you want to delete this {{ data.type }}?
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-flat-button color = "warn" matDialogClose (click) = "deleteItem()">Delete</button>
+    <button mat-button matDialogClose>Cancel</button>
+</mat-dialog-actions>

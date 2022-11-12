@@ -1,0 +1,21 @@
+<app-space-moderator [showUI] = "true" (spaceAllowed) = "setForumAllowed($event)"></app-space-moderator>
+<div *ngIf = "spaceAllowed">
+    <app-crud-activator class = "stream-crud-activator" [parent] = "space" [type] = "type" *ngIf = "streamStack.length == 0 && (urlPath == 'questions' || urlPath == 'categories' || urlPath == 'users')"></app-crud-activator>
+    <b *ngIf = "streamStack.length == 0">
+        <p class = "stream-message" *ngIf = "urlPath == 'questions' || urlPath == 'categories' || urlPath == 'users'">There are no {{ urlPath }} here.</p>
+        <p class = "stream-message" *ngIf = "urlPath == 'joinedspaces'">There are no joined spaces here.</p>
+        <p class = "stream-message" *ngIf = "urlPath == 'ownedspaces'">There are no owned spaces here.</p>
+        <p class = "stream-message" *ngIf = "urlPath == 'timetravel'">There are no shared spaces here.</p>
+    </b>
+    <cdk-virtual-scroll-viewport class = "stream-scroll-viewport" #streamScrollViewport [style.height] = "window.innerHeight - 115 + 'px'" [itemSize] = "itemSizes[type] + 10">
+        <div class = "stream-item-wrapper" *cdkVirtualFor = "let item of streamStack">
+            <app-item [item] = "item" [parent] = "space" [type] = "type" [width] = "itemWidth" [height] = "itemSizes[type]" [resize] = "true" *ngIf = "type != 'space'"></app-item>
+            <app-space-card [urlPath] = "urlPath" [space] = "item" *ngIf = "type == 'space'"></app-space-card>
+        </div>
+    </cdk-virtual-scroll-viewport>
+    <button mat-mini-fab class = "stream-reverse-sort" color = "accent" matTooltip = "Reverse sort" (click) = "reverseSort()">
+        <mat-icon>sort</mat-icon>
+    </button>
+    <mat-paginator class = "stream-paginator" [length] = "maxPages" [pageIndex] = "pageIndex" [pageSize] = "pageSize" (page) = "pageChange($event)"></mat-paginator>
+</div>
+<div class = "stream-scroll-viewport-fix"></div>

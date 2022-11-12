@@ -1,0 +1,10 @@
+<app-space-moderator [showUI] = "true" (spaceAllowed) = "setSpaceAllowed($event)"></app-space-moderator>
+<div class = "full-question-wrapper" *ngIf = "spaceAllowed">
+    <app-item [item] = "question" [parent] = "space" [type] = "'question'" [width] = "questionWidth" [height] = "window.innerHeight - 80" [resize] = "true"></app-item>
+    <div class = "full-question-subunit-wrapper" *ngFor = "let a of question.answers">
+        <app-item [item] = "a.answer" [parent] = "question" [type] = "'answer'" [width] = "answerWidth" [height] = "answerHeight" [resize] = "true"></app-item>
+        <div class = "full-question-subunit-wrapper" *ngFor = "let c of a.answer.comments">
+            <app-item [item] = "c.comment" [parent] = "a.answer" [type] = "'comment'" [width] = "commentWidth" [height] = "commentHeight" [resize] = "true"></app-item>
+        </div>
+    </div>
+</div>

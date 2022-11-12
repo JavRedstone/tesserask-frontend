@@ -1,0 +1,29 @@
+<mat-dialog-content>
+    <div *ngIf = "data.mode == 'Join'">
+        <p class = "join-unshared-title">Join unshared space</p>
+        Enter the 6-digit join code
+        <br>
+        <br>
+        <mat-form-field appearance = "fill">
+            <mat-label>Code</mat-label>
+            <input matInput #joinUnsharedCode maxlength = "6">
+            <mat-hint align = "end">{{ joinUnsharedCode.value.length }} / 6</mat-hint>
+        </mat-form-field>
+    </div>
+    <div *ngIf = "data.mode == 'Code'">
+        <p class = "join-unshared-title">Join Code</p>
+        <p class = "join-unshared-code">{{ data.code }}</p>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <div *ngIf = "data.mode == 'Join'">
+        <button mat-flat-button color = "accent" matDialogClose (click) = "joinUnshared()">Join</button>
+        <button mat-button matDialogClose>Cancel</button>
+    </div>
+    <div *ngIf = "data.mode == 'Code'">
+        <button mat-icon-button color = "accent" matTooltip = "Copy code" matDialogClose (click) = "copyCode()">
+            <mat-icon>content_copy</mat-icon>
+        </button>
+        <button mat-button matDialogClose>Close</button>
+    </div>
+</mat-dialog-actions>

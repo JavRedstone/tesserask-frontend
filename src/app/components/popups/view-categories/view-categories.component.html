@@ -1,0 +1,16 @@
+<mat-dialog-content [style.minHeight] = "window.innerHeight * 0.8 + 'px'">
+    <p class = "view-categories-title">Categories of {{ data.item.title }}</p>
+    <mat-list>
+        <mat-list-item *ngFor = "let c of data.item.categories">
+            <mat-icon mat-list-icon>category</mat-icon>
+            <div mat-line>
+                <b>{{ c.category.title }}</b>
+            </div>
+            <div mat-line>{{ c.category.description }}</div>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+    </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button matDialogClose>Close</button>
+</mat-dialog-actions>

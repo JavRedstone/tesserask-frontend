@@ -1,0 +1,30 @@
+<button mat-icon-button matTooltip = "Actions" [matMenuTriggerFor] = "crudActivatorMenu" *ngIf = "(type == 'space' && isSpaceJoined()) || ((currentUser != null && type != null) && crudAllowed.includes(type) && (type != 'category' || parent.author.user.id == currentUser.id))">
+    <mat-icon>tune</mat-icon>
+</button>
+
+<mat-menu #crudActivatorMenu>
+    <button mat-menu-item (click) = "activateCrud('Create')" *ngIf = "!hasQuestionId || type != 'question'">
+        <mat-icon>add</mat-icon>
+        Create new
+    </button>
+    <button mat-menu-item (click) = "activateCrud('Edit')" *ngIf = "currentUser != null && item != null && item.author != null && currentUser.id == item.author.user.id">
+        <mat-icon>edit</mat-icon>
+        Edit existing
+    </button>
+    <button mat-menu-item (click) = "activateCrud('Delete')" *ngIf = "currentUser != null && item != null && item.author != null && currentUser.id == item.author.user.id && (!hasQuestionId || type != 'question')">
+        <mat-icon>delete</mat-icon>
+        Delete existing
+    </button>
+    <button mat-menu-item (click) = "activateCrud('Response')" *ngIf = "hasQuestionId && type != 'comment'">
+        <mat-icon>forum</mat-icon>
+        Create response
+    </button>
+    <button mat-menu-item (click) = "activateCrud('Code')" *ngIf = "currentUser != null && item != null && type == 'space' && item.shared == false && currentUser.id == item.author.user.id">
+        <mat-icon>vpn_key</mat-icon>
+        View join code
+    </button>
+    <button mat-menu-item (click) = "activateCrud('Leave')" *ngIf = "currentUser != null && item != null && type == 'space' && currentUser.id != item.author.user.id && isSpaceJoined()">
+        <mat-icon>rocket</mat-icon>
+        Leave space
+    </button>
+</mat-menu>

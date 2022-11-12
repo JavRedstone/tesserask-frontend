@@ -1,0 +1,9 @@
+@import '@angular/material/theming';
+
+@mixin join-unshared-component-theme($primary-color, $accent-color) {
+    .join-unshared-code {
+        background: -webkit-linear-gradient($primary-color, $accent-color);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}

@@ -1,0 +1,11 @@
+@import '@angular/material/theming';
+
+@mixin create-edit-item-component-theme($divider) {
+    .create-edit-item-drag-n-drop {
+        border: 2px solid $divider;
+    }
+
+    .create-edit-item-drag-n-drop.fileOver {
+        border-style: dashed;
+    } 
+}

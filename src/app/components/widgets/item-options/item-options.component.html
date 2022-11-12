@@ -1,0 +1,31 @@
+<div>
+    <button class = "item-options-button" matTooltip = "Upvote" mat-icon-button [disabled] = "currentUser == null" (click) = "vote('up')" *ngIf = "item.upvoteUsers != null">
+        <mat-icon>arrow_drop_up</mat-icon>
+    </button>
+</div>
+<div class = "item-options-count" *ngIf = "item.upvoteUsers != null && item.downvoteUsers != null">{{ item.upvoteUsers.length - item.downvoteUsers.length }}</div>
+<div>
+    <button class = "item-options-button" matTooltip = "Downvote" mat-icon-button [disabled] = "currentUser == null" (click) = "vote('down')" *ngIf = "item.downvoteUsers != null">
+        <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+</div>
+<div class = "item-options-button" matTooltip = "Accept answer" (click) = "accept()" *ngIf = "currentUser != null && item.accepted != null && currentUser.id == parent.author.user.id">
+    <button class = "item-options-button" mat-icon-button>
+        <mat-icon *ngIf = "!item.accepted">check</mat-icon>
+        <mat-icon *ngIf = "item.accepted">remove</mat-icon>
+    </button>
+</div>
+<button class = "item-options-button" matTooltip = "Stats" mat-icon-button [matMenuTriggerFor] = "itemOptionsMenu" *ngIf = "item.categories != null || item.author != null">
+    <mat-icon>insights</mat-icon>
+</button>
+
+<mat-menu #itemOptionsMenu>
+    <button mat-menu-item (click) = "openDialog('category')" *ngIf = "item.categories != null && item.categories.length > 0">
+        <mat-icon>category</mat-icon>
+        View categories
+    </button>
+    <button mat-menu-item (click) = "openDialog('user')" *ngIf = "item.author != null">
+        <mat-icon>face</mat-icon>
+        View author
+    </button>
+</mat-menu>

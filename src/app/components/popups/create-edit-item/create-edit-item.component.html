@@ -1,0 +1,89 @@
+<mat-dialog-content [style.minHeight] = "window.innerHeight * 0.8 + 'px'" *ngIf = "data.item != null">
+    <p class = "create-edit-item-title">{{ data.mode }} {{ data.type }}</p>
+    <mat-stepper class = "create-edit-item-stepper" linear orientation = "vertical">
+        <mat-step [stepControl] = "titleFormGroup" *ngIf = "data.item.title != null">
+            <form [formGroup] = "titleFormGroup" *ngIf = "titleFormGroup != null">
+                <ng-template matStepLabel>Fill out your {{ data.type }} {{ titleType }}</ng-template>
+                <mat-form-field class = "create-edit-item-form" appearance = "fill">
+                    <mat-label>Enter {{ titleType }}</mat-label>
+                    <input #createEditItemTitle matInput formControlName = "titleControl" autocomplete = "off" placeholder = "Enter your {{ data.type }} {{ data.item.titleType }}" required [maxlength] = "titleLength">
+                </mat-form-field>
+                <div>
+                    <button mat-flat-button color = "primary" matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl] = "descriptionFormGroup">
+            <form [formGroup] = "descriptionFormGroup" *ngIf = "descriptionFormGroup != null">
+                <ng-template matStepLabel>Fill out your {{ data.type }} description</ng-template>
+                <mat-form-field class = "create-edit-item-form" appearance = "fill">
+                    <mat-label>Description</mat-label>
+                    <textarea #createEditItemDescription matInput formControlName = "descriptionControl" autocomplete = "off" placeholder = "Enter your {{ data.type }} description" formControlName = "descriptionControl" required [maxlength] = "descriptionLength" [style.minHeight] = "window.innerHeight * 0.4 + 'px'"></textarea>
+                </mat-form-field>
+                <div>
+                    <button mat-flat-button color = "primary" matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step optional *ngIf = "attachmentType != ''">
+            <ng-template matStepLabel>Upload {{ attachmentType }}</ng-template>
+            <mat-selection-list [multiple] = "false">
+                <label>
+                    <input class = "create-edit-item-file-chooser" type = "file" [accept] = "data.item.attachments != null ? 'image/png, image/jpeg, image/gif' : '*'" [multiple] = "data.attachments == null" (change) = "onFileSelected($event)">
+                    <mat-list-option>
+                        <mat-icon mat-list-icon>attach_file</mat-icon>
+                        <div class = "create-edit-item-attachment-text">Attach</div>
+                    </mat-list-option>
+                </label>
+                <mat-list-option class = "create-edit-item-drag-n-drop" appDragNDrop (fileDropped) = "onFileDropped($event)">
+                    <mat-icon mat-list-icon>highlight_alt</mat-icon>
+                    <div class = "create-edit-item-attachment-text">Drop file</div>
+                </mat-list-option>
+            </mat-selection-list>
+            <div>{{ totalAttachmentsSize }} MB / {{ maxAttachmentSize }} MB Used</div>
+            <div *ngFor = "let a of attachmentList">
+                <app-attachment [attachment] = "a.attachment" [preview] = "true" (remove) = "removeFromAttachmentList($event)"></app-attachment>
+            </div>
+            <div>
+                <button mat-flat-button color = "primary" matStepperNext>Next</button>
+            </div>
+        </mat-step>
+        <mat-step optional *ngIf = "data.item.categories != null">
+            <ng-template matStepLabel>Select categories</ng-template>
+            <mat-form-field class = "create-edit-item-form" appearance = "fill">
+                <mat-label>Select your question categories</mat-label>
+                <mat-chip-list #createEditItemCategoryChipList>
+                    <mat-chip *ngFor = "let c of categoryList" (removed) = "removeCategory(c)">
+                        {{ c.category.title }}
+                        <button matChipRemove>
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </mat-chip>
+                    <input #createEditItemCategoryInput [formControl] = "categoryControl" [matAutocomplete] = "createEditItemCategoryAutocomplete" [matChipInputFor] = "createEditItemCategoryChipList">
+                </mat-chip-list>
+                <mat-autocomplete #createEditItemCategoryAutocomplete = "matAutocomplete" (optionSelected) = "selectedCategory($event)">
+                    <mat-option *ngFor = "let c of filteredCategories | async" [value] = "c.category.title">
+                        {{ c.category.title }}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <div>
+                <button mat-flat-button color = "primary" matStepperNext>Next</button>
+            </div>
+        </mat-step>
+        <mat-step *ngIf = "data.item.shared != null">
+            <ng-template matStepLabel>Choose shared</ng-template>
+            <mat-checkbox [(ngModel)] = "sharedSpace">Make space public to all Tesserask users.</mat-checkbox>
+            <div>
+                <button mat-flat-button color = "primary" matStepperNext>Next</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>{{ data.mode }} your {{ data.type }}</ng-template>
+            <button mat-flat-button color = "accent" mat-dialog-close (click) = "createEditItem()">{{ data.mode }}</button>
+        </mat-step>
+    </mat-stepper>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

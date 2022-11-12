@@ -1,0 +1,89 @@
+@keyframes home-background-animation {
+    from { filter: blur(2px) brightness(0); }
+    to { filter: blur(2px) brightness(0.5); }
+}
+
+.home-wrapper {
+    width: 100vw;
+    height: 100vh;
+
+    position: absolute;
+
+    background-color: #000;
+
+    font-weight: bold;
+}
+
+.home-background {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    margin-left: 50%;
+    transform: translate(-50%);
+    
+    object-fit: cover;
+
+    filter: blur(2px) brightness(0.5);
+    
+    animation: home-background-animation 2.5s;
+}
+
+.home-title {
+    width: 100%;
+    
+    margin-left: 50%;
+    margin-top: clamp(50px, 10vw, 150px);
+    transform: translate(-50%);
+
+    font-size: clamp(0px, 15vw, 100px);
+    text-align: center;
+    color: #fff;
+}
+
+.home-description {
+    width: 100%;
+
+    margin-left: 50%;
+    margin-top: clamp(20px, 5vw, 45px);
+    transform: translate(-50%);
+
+    font-size: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.home-tesseract {
+    width: clamp(200px, 30vh, 400px);
+    height: auto;
+
+    position: absolute;
+    margin-left: 50%;
+    margin-top: clamp(20px, 5vw, 45px);
+    transform: translate(-50%);
+
+    filter: brightness(0.5);
+}
+
+.home-enter {
+    position: absolute;
+    margin-left: 50%;
+    margin-top: clamp(100px * 15/11, 15vh * 15/11, 200px * 15/11);
+    transform: translate(-50%);
+
+    border: 2px solid #fff;
+
+    font-size: 20px;
+    color: #fff;
+}
+
+.home-credit {
+    width: 100%;
+
+    position: absolute;
+    bottom: 10px;
+
+    font-size: 15px;
+    text-align: center;
+    color: #ffffff80;
+}
