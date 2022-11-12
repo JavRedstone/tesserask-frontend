@@ -1,0 +1,25 @@
+<mat-drawer-container class = "mat-app-background" autosize [ngClass] = "isDark ? 'dark-theme' : ''" [style.display] = "router.url == '/' ? 'none' : 'block'">
+    <mat-drawer #appDrawer mode = "over">
+        <app-drawer></app-drawer>
+    </mat-drawer>
+
+    <div class = "app-drawer-content">
+        <mat-toolbar class = "app-toolbar">
+            <button mat-icon-button matTooltip = "Navigator" (click) = "appDrawer.toggle()" *ngIf = "!hidden">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <img class = "app-logo" src = "./assets/tesserask-logo.svg" matTooltip = "Back to Earth" (click) = "redirectHome()" *ngIf = "!hidden">
+            <div class = "app-name" *ngIf = "window.innerWidth > 1045">TESSERASK</div>
+            <app-search class = "app-search" (searchExpand) = "hideRest()" (searchContract) = "showRest()"></app-search>
+            <button class = "app-dark-light" mat-icon-button (click) = "darkLight()" *ngIf = "!hidden">
+                <mat-icon matTooltip = "Dark mode" *ngIf = "!isDark">dark_mode</mat-icon>
+                <mat-icon matTooltip = "Light mode" *ngIf = "isDark">light_mode</mat-icon>
+            </button>
+            <app-user-actions class = "app-user-actions" *ngIf = "!hidden"></app-user-actions>
+        </mat-toolbar>
+        <div [style.minHeight] = "window.innerHeight - 50 + 'px'">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</mat-drawer-container>
+<app-home *ngIf = "router.url == '/'"></app-home>
