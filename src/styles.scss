@@ -12,35 +12,35 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$everyquest-primary: mat.define-palette(mat.$purple-palette);
-$everyquest-accent: mat.define-palette(mat.$indigo-palette);
+$tesserask-primary: mat.define-palette(mat.$purple-palette);
+$tesserask-accent: mat.define-palette(mat.$indigo-palette);
 
 // The warn palette is optional (defaults to red).
-$everyquest-warn: mat.define-palette(mat.$red-palette);
+$tesserask-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
 $light-theme: mat.define-light-theme((
   color: (
-    primary: $everyquest-primary,
-    accent: $everyquest-accent,
-    warn: $everyquest-warn,
+    primary: $tesserask-primary,
+    accent: $tesserask-accent,
+    warn: $tesserask-warn,
   )
 ));
 
 $light-theme: mat.define-light-theme((
   color: (
-    primary: $everyquest-primary,
-    accent: $everyquest-accent,
-    warn: $everyquest-warn,
+    primary: $tesserask-primary,
+    accent: $tesserask-accent,
+    warn: $tesserask-warn,
   )
 ));
 
 $dark-theme: mat.define-dark-theme((
   color: (
-    primary: $everyquest-primary,
-    accent: $everyquest-accent,
-    warn: $everyquest-warn,
+    primary: $tesserask-primary,
+    accent: $tesserask-accent,
+    warn: $tesserask-warn,
   )
 ));
 
