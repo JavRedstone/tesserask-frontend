@@ -28,14 +28,6 @@ $light-theme: mat.define-light-theme((
   )
 ));
 
-$light-theme: mat.define-light-theme((
-  color: (
-    primary: $tesserask-primary,
-    accent: $tesserask-accent,
-    warn: $tesserask-warn,
-  )
-));
-
 $dark-theme: mat.define-dark-theme((
   color: (
     primary: $tesserask-primary,
