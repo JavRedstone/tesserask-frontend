@@ -1,0 +1,47 @@
+.search-form {
+    display: inline-block;
+
+    height: 40px;
+
+    border-radius: 5px;
+}
+
+.search-input {
+    height: 40px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0;
+
+    border: none;
+    outline: none;
+
+    font-size: 20px;
+}
+
+.search-button {
+    position: absolute;
+    margin-left: -40px;
+}
+
+.search-mode {
+    height: 35px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 0;
+
+    border-radius: 5px;
+
+    font-size: 12px;
+}
+
+.search-contract {
+    position: absolute;
+    margin-left: -15px;
+}
+
+.search-expand {
+    position: absolute;
+}

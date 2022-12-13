@@ -1,0 +1,18 @@
+<img class = "attachment-display" [src] = "attachment.base64" [ngStyle] = "type == 'user' || type == 'space' ? { 'width': width + 'px', 'height': height + 'px', 'object-fit': 'cover', 'border-radius': type == 'user' ? width / 2 + 'px' : 0 } : { 'max-width': width + 'px', 'max-height': height + 'px', 'object-fit': 'fill' }" *ngIf = "!preview && attachment.type.includes('image/') && attachment.type != 'image/svg+xml'">
+<mat-list class = "attachment-preview-wrapper" *ngIf = "preview || !attachment.type.includes('image/') || attachment.type == 'image/svg+xml'">
+    <mat-list-item>
+        <mat-icon mat-list-icon>description</mat-icon>
+        <div mat-line>
+            <b>{{ attachment.name }}</b>
+        </div>
+        <div mat-line>Type: {{ attachment.type }}</div>
+        <div mat-line>Size: {{ attachment.size }} MB</div>
+        <div mat-line>Last Modified: {{ attachment.lastModified | date: 'MM/dd/yyyy — h:mm:ss a' }}</div>
+        <button mat-icon-button (click) = "removeAttachment()" *ngIf = "preview">
+            <mat-icon>remove</mat-icon>
+        </button>
+        <button mat-icon-button (click) = "downloadAttachment()" *ngIf = "!preview">
+            <mat-icon>download</mat-icon>
+        </button>
+    </mat-list-item>
+</mat-list>
