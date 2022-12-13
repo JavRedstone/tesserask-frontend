@@ -1,7 +1,0 @@
-@import '@angular/material/theming';
-
-@mixin attachment-component-theme($divider) {
-    .attachment-preview-wrapper {
-        border: 1px solid $divider;
-    }
-}
